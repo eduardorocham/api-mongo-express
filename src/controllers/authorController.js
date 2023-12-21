@@ -4,8 +4,12 @@ import DontFound from "../errors/DontFound.js";
 class AuthorController {
     static async ListAuthors (req, res, next) {
         try {
-            const authorsList = await author.find({});
-            return res.status(200).json(authorsList);
+            const authorsList = author.find({});
+
+            req.result = authorsList;
+
+            next();
+            // return res.status(200).json(authorsList);
         } catch(error) {
             next(error);
         }
